@@ -188,6 +188,29 @@ ToastMaster works in all modern browsers:
 - Opera (latest)
 - Mobile browsers (iOS Safari, Android Chrome)
 
-## License
 
-MIT License# ToastMaster
+
+## Installation
+
+### Option 1: Via NPM
+```bash
+# Install the package
+npm install toastmaster
+
+# Build the minified version
+npm run build
+```
+
+### Option 2: Via CDN
+```html
+<script src="https://cdn.example.com/npm/toastmaster@1.0.0/dist/toastmaster.min.js"></script>
+```
+
+### Option 3: Direct Download
+1. Download `toastmaster.min.js` from the `dist` folder
+2. Include it in your HTML:
+```html
+<script src="path/to/toastmaster.min.js"></script>
+```
+## License
+MIT License# ToastMaster- sabbirsam
