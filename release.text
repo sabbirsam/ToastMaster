@@ -1,0 +1,134 @@
+# Publishing ToastMaster to npm- Planning 
+
+Steps to publish your ToastMaster library to npm so it can be used globally.
+
+## Prerequisites
+
+- [Node.js and npm](https://nodejs.org/) installed
+- A [npm account](https://www.npmjs.com/signup) (free)
+
+## Step 1: Prepare Your Package
+
+1. Ensure your project structure is set up correctly:
+   ```
+   toastmaster/
+   ├── src/
+   │   └── ToastMaster.js
+   ├── dist/
+   │   └── toastmaster.min.js
+   ├── package.json
+   ├── webpack.config.js
+   ├── .gitignore
+   └── README.md
+   ```
+
+2. Confirm your package.json has the essential fields:
+   ```json
+   {
+     "name": "toastmaster",
+     "version": "1.0.0",
+     "description": "A lightweight, customizable modal and toast notification library",
+     "main": "dist/toastmaster.min.js",
+     "files": [
+       "dist",
+       "src"
+     ],
+     "keywords": [
+       "toast",
+       "modal",
+       "notification",
+       "alert",
+       "popup"
+     ],
+     "author": "YourName",
+     "license": "MIT",
+     "repository": {
+       "type": "git",
+       "url": "https://github.com/sabbirsam/ToastMaster"
+     }
+   }
+   ```
+
+3. Build your project:
+   ```bash
+   npm run build
+   ```
+
+## Step 2: Login to npm
+
+```bash
+npm login
+```
+
+Enter your npm username, password, and email when prompted.
+
+## Step 3: Publish Your Package
+
+```bash
+npm publish
+```
+
+If your package name is already taken, you'll need to choose a different name in your package.json file.
+
+## Step 4: Check Your Package
+
+Once published, you can check your package at:
+```
+https://www.npmjs.com/package/toastmaster
+```
+
+## Step 5: Using Scoped Packages (Optional)
+
+If "toastmaster" is already taken, consider using a scoped package:
+
+1. Update your package.json:
+   ```json
+   {
+     "name": "@yourusername/toastmaster",
+     ...
+   }
+   ```
+
+2. Publish with public access:
+   ```bash
+   npm publish --access public
+   ```
+
+## Step 6: Updating Your Package
+
+When you make changes:
+
+1. Update the version in package.json following [semantic versioning](https://semver.org/):
+   - Patch update (bug fixes): 1.0.0 → 1.0.1
+   - Minor update (new features): 1.0.0 → 1.1.0
+   - Major update (breaking changes): 1.0.0 → 2.0.0
+
+2. Rebuild and publish:
+   ```bash
+   npm run build
+   npm publish
+   ```
+
+## Step 7: Package Distribution
+
+Your package will be installable via:
+
+```bash
+# Global install
+npm install -g toastmaster
+
+# Local project install
+npm install toastmaster
+```
+
+Or via CDN:
+```html
+<script src="https://cdn.jsdelivr.net/npm/toastmaster@1.0.0/dist/toastmaster.min.js"></script>
+```
+
+## Common Issues and Solutions
+
+- **Name already taken**: Use a scoped package name with your username
+- **Version already exists**: You cannot republish the same version; always increment the version number
+- **Publishing errors**: Make sure you're logged in and have verified your email with npm
+- **Package not found after publishing**: It may take a few minutes for your package to be indexed and searchable
