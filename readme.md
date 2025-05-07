@@ -106,7 +106,8 @@ Toast.fire({
 // Original usage still works:
 Toast.success('Operation completed successfully!', 4000);
 // Will auto-close after 4 seconds
-
+```
+```javascript
 // New object-based configuration works too:
 Toast.success('Operation completed!', {
   position: 'top-right',
@@ -120,7 +121,9 @@ Toast.success('Operation completed!', {
 ```javascript
 // Original usage still works:
 Toast.error('Error', 'Something went wrong!');
+```
 
+```javascript
 // New object-based configuration works too:
 Toast.error('Error', {
   content: 'Something went wrong!',
@@ -135,7 +138,8 @@ Toast.error('Error', {
 ```javascript
 // Original usage still works:
 Toast.warn('Warning', 'Please fill in all required fields.');
-
+```
+```javascript
 // New object-based configuration works too:
 Toast.warn('Warning', {
   content: 'Please fill in all required fields.',
@@ -150,7 +154,9 @@ Toast.warn('Warning', {
 ```javascript
 // Original usage still works:
 Toast.info('Information', 'The system will be under maintenance tomorrow.');
+```
 
+```javascript
 // New object-based configuration works too:
 Toast.info('Information', {
   content: 'The system will be under maintenance tomorrow.',
@@ -165,7 +171,8 @@ Toast.info('Information', {
 ```javascript
 // Original usage still works:
 Toast.notify('New Message', 'You have received a new message from John.');
-
+```
+```javascript
 // New object-based configuration works too:
 Toast.notify('New Message', {
   content: 'You have received a new message from John.',
