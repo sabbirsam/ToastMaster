@@ -6,38 +6,39 @@
  * @license MIT
  */
 
+// Immediately Invoked Function Expression (IIFE) to avoid polluting the global scope
 (function() {
   'use strict';
 
   // Default options for the library
   const DEFAULT_OPTIONS = {
     // Basic content
-    title: false,
-    content: false,
+    title: false,         // Modal title
+    content: false,       // Modal content/message
     
     // Buttons
-    ok: 'OK',
-    okColor: '#2980b9',
-    cancel: 'Cancel',
-    cancelColor: 'transparent',
+    ok: 'OK',             // OK button text
+    okColor: '#2980b9',   // OK button color
+    cancel: 'Cancel',     // Cancel button text
+    cancelColor: 'transparent', // Cancel button color
     
     // Appearance
-    icon: 'success',
-    iconColor: '#2980b9',
-    backdrop: 'rgba(0, 0, 0, 0.7)',
-    size: 'sm',
-    position: 'center',
-    animation: 'fadeIn',
-    darkMode: false,
+    icon: 'success',      // Icon type
+    iconColor: '#2980b9', // Icon color
+    backdrop: 'rgba(0, 0, 0, 0.7)', // Backdrop color
+    size: 'sm',           // Modal size
+    position: 'center',   // Modal position
+    animation: 'fadeIn',  // Animation type
+    darkMode: false,      // Dark mode toggle
     
     // Behavior
-    backdropClose: true,
-    enterOk: false,
-    escClose: true,
-    bodyClose: false,
-    closeButton: true,
-    timeout: false,
-    progress: false,
+    backdropClose: true,  // Close on backdrop click
+    enterOk: false,       // Submit on Enter key
+    escClose: true,       // Close on Escape key
+    bodyClose: false,     // Close on modal body click
+    closeButton: true,    // Show close button
+    timeout: false,       // Auto-close timeout
+    progress: false,      // Show progress bar
     
     // Custom classes
     classes: {
@@ -118,11 +119,11 @@
   class ToastMaster {
     constructor(options = {}) {
       this.options = this._mergeOptions(DEFAULT_OPTIONS, options);
-      this.currentModal = null;
-      this.timer = null;
-      this.progressTimer = null;
-      this.isLoading = false;
-      this._injectStyles();
+      this.currentModal = null;  // Tracks currently open modal
+      this.timer = null; // Timeout timer
+      this.progressTimer = null; // Progress bar timer
+      this.isLoading = false; // Loading state
+      this._injectStyles();  // Inject CSS
     }
 
     /**
@@ -385,7 +386,7 @@
     }
 
     /**
-     * Create and show a modal
+     * Create and show a modal- The main method for creating and showing a modal
      * 
      * @param {Object} options - Modal options
      * @returns {Promise} - Promise that resolves when modal is closed
