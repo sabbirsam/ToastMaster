@@ -763,48 +763,29 @@
      * Show success modal
      * 
      * @param {String} title - Modal title
-     * @param {Number|Boolean} timeout - Auto-close timeout
+     * @param {Number|Object} options - Auto-close timeout or configuration object
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    /* success(title = '', timeout = 4000) {
-      return this.fire({
+      success(title = '', options = 4000) {
+        const config = {
         title: title,
         icon: 'success',
         iconColor: '#28a745',
         ok: false,
         cancel: false,
-        timeout: timeout,
-        progress: timeout !== false
-      });
-    } */
-
-      /**
-   * Show success modal
-   * 
-   * @param {String} title - Modal title
-   * @param {Number|Object} options - Auto-close timeout or configuration object
-   * @returns {Promise} - Promise that resolves when modal is closed
-   */
-  success(title = '', options = 4000) {
-      const config = {
-      title: title,
-      icon: 'success',
-      iconColor: '#28a745',
-      ok: false,
-      cancel: false,
-      progress: true
-      };
-      
-      if (typeof options === 'number' || options === false) {
-      // Legacy behavior: options is just the timeout
-      config.timeout = options;
-      } else if (typeof options === 'object') {
-      // New behavior: options is a configuration object
-      Object.assign(config, options);
+        progress: true
+        };
+        
+        if (typeof options === 'number' || options === false) {
+        // Legacy behavior: options is just the timeout
+        config.timeout = options;
+        } else if (typeof options === 'object') {
+        // New behavior: options is a configuration object
+        Object.assign(config, options);
+        }
+        
+        return this.fire(config);
       }
-      
-      return this.fire(config);
-  }
 
 
     /**
@@ -814,18 +795,7 @@
      * @param {String} content - Modal content
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    /* error(title = '', content = '') {
-      return this.fire({
-        title: title,
-        content: content,
-        icon: 'error',
-        iconColor: '#dc3545',
-        ok: 'OK',
-        okColor: '#dc3545',
-        cancel: false
-      });
-    } */
-  error(title = '', content = '') {
+    error(title = '', content = '') {
       const config = {
           title: title,
           icon: 'error',
@@ -844,7 +814,7 @@
       }
       
       return this.fire(config);
-      }
+    }
       
 
     /**
@@ -854,19 +824,7 @@
      * @param {String} content - Modal content
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    /* warn(title = '', content = '') {
-      return this.fire({
-        title: title,
-        content: content,
-        icon: 'warning',
-        iconColor: '#ffc107',
-        ok: 'OK',
-        okColor: '#ffc107',
-        cancel: false
-      });
-    } */
-
-  warn(title = '', content = '') {
+    warn(title = '', content = '') {
       const config = {
           title: title,
           icon: 'warning',
@@ -885,7 +843,7 @@
       }
       
       return this.fire(config);
-      }
+    }
       
 
     /**
@@ -895,38 +853,26 @@
      * @param {String} content - Modal content
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    /* info(title = '', content = '') {
-      return this.fire({
-        title: title,
-        content: content,
-        icon: 'info',
-        iconColor: '#17a2b8',
-        ok: 'OK',
-        okColor: '#17a2b8',
-        cancel: false
-      });
-    } */
-
       info(title = '', content = '') {
-          const config = {
-            title: title,
-            icon: 'info',
-            iconColor: '#17a2b8',
-            ok: 'OK',
-            okColor: '#17a2b8',
-            cancel: false
-          };
-          
-          if (typeof content === 'object') {
-            // content is a configuration object
-            Object.assign(config, content);
-          } else {
-            // content is just a string
-            config.content = content;
-          }
-          
-          return this.fire(config);
+        const config = {
+          title: title,
+          icon: 'info',
+          iconColor: '#17a2b8',
+          ok: 'OK',
+          okColor: '#17a2b8',
+          cancel: false
+        };
+        
+        if (typeof content === 'object') {
+          // content is a configuration object
+          Object.assign(config, content);
+        } else {
+          // content is just a string
+          config.content = content;
         }
+        
+        return this.fire(config);
+      }
 
     /**
      * Show question modal
@@ -935,38 +881,26 @@
      * @param {String} content - Modal content
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    /* ask(title = '', content = '') {
-      return this.fire({
-        title: title,
-        content: content,
-        icon: 'question',
-        iconColor: '#6c757d',
-        ok: 'Yes',
-        okColor: '#28a745',
-        cancel: 'No'
-      });
-    } */
-
       ask(title = '', content = '') {
-          const config = {
-            title: title,
-            icon: 'question',
-            iconColor: '#6c757d',
-            ok: 'Yes',
-            okColor: '#28a745',
-            cancel: 'No'
-          };
-          
-          if (typeof content === 'object') {
-            // content is a configuration object
-            Object.assign(config, content);
-          } else {
-            // content is just a string
-            config.content = content;
-          }
-          
-          return this.fire(config);
+        const config = {
+          title: title,
+          icon: 'question',
+          iconColor: '#6c757d',
+          ok: 'Yes',
+          okColor: '#28a745',
+          cancel: 'No'
+        };
+        
+        if (typeof content === 'object') {
+          // content is a configuration object
+          Object.assign(config, content);
+        } else {
+          // content is just a string
+          config.content = content;
         }
+        
+        return this.fire(config);
+      }
 
     /**
      * Show notification
@@ -975,20 +909,6 @@
      * @param {String} content - Notification content
      * @returns {Promise} - Promise that resolves when notification is closed
      */
-    /* notify(title = '', content = '') {
-      return this.fire({
-        title: title,
-        content: content,
-        icon: 'info',
-        iconColor: '#17a2b8',
-        position: 'top-right',
-        ok: false,
-        cancel: false,
-        timeout: 5000,
-        progress: true
-      });
-    } */
-
       notify(title = '', content = '') {
           const config = {
             title: title,
