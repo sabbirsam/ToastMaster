@@ -6,11 +6,7 @@
  * @license MIT
  */
 
-(function(global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, (global.Toast = global.ToastMaster = factory()));
-})(this, function() {
+(function() {
   'use strict';
 
   // Default options for the library
@@ -902,5 +898,19 @@
     ToastMaster[method] = (...args) => instance[method](...args);
   });
   
-  return ToastMaster;
-});
+  // Explicitly assign to window/global object
+  if (typeof window !== 'undefined') {
+    window.ToastMaster = ToastMaster;
+    window.Toast = ToastMaster;
+  }
+
+  // CommonJS
+  if (typeof module === 'object' && module.exports) {
+    module.exports = ToastMaster;
+  }
+
+  // AMD
+  if (typeof define === 'function' && define.amd) {
+    define(function() { return ToastMaster; });
+  }
+})();

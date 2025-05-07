@@ -6,10 +6,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'toastmaster.min.js',
-    library: 'Toast',
-    libraryTarget: 'umd',
-    libraryExport: 'default',
-    globalObject: 'this'
   },
   mode: 'production',
   module: {
@@ -41,9 +37,13 @@ module.exports = {
             drop_console: true,
             drop_debugger: true
           },
+          mangle: {
+            reserved: ['Toast', 'ToastMaster', 'window', 'define', 'module']
+          },
           output: {
             comments: false
-          }
+          },
+          keep_fnames: true
         },
         extractComments: false
       }),

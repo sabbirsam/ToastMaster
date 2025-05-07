@@ -205,8 +205,8 @@ Toast.fire({
     okColor: '#FF5722',
     size: 'md',
     classes: {
-      modal: 'my-custom-modal',
-      content: 'my-custom-content'
+      modal: 'toastmaster-custom-modal',
+      content: 'toastmaster-custom-content'
     }
   });
   
