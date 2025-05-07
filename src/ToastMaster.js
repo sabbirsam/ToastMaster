@@ -766,7 +766,7 @@
      * @param {Number|Boolean} timeout - Auto-close timeout
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    success(title = '', timeout = 4000) {
+    /* success(title = '', timeout = 4000) {
       return this.fire({
         title: title,
         icon: 'success',
@@ -776,7 +776,36 @@
         timeout: timeout,
         progress: timeout !== false
       });
-    }
+    } */
+
+      /**
+   * Show success modal
+   * 
+   * @param {String} title - Modal title
+   * @param {Number|Object} options - Auto-close timeout or configuration object
+   * @returns {Promise} - Promise that resolves when modal is closed
+   */
+  success(title = '', options = 4000) {
+      const config = {
+      title: title,
+      icon: 'success',
+      iconColor: '#28a745',
+      ok: false,
+      cancel: false,
+      progress: true
+      };
+      
+      if (typeof options === 'number' || options === false) {
+      // Legacy behavior: options is just the timeout
+      config.timeout = options;
+      } else if (typeof options === 'object') {
+      // New behavior: options is a configuration object
+      Object.assign(config, options);
+      }
+      
+      return this.fire(config);
+  }
+
 
     /**
      * Show error modal
@@ -785,7 +814,7 @@
      * @param {String} content - Modal content
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    error(title = '', content = '') {
+    /* error(title = '', content = '') {
       return this.fire({
         title: title,
         content: content,
@@ -795,7 +824,28 @@
         okColor: '#dc3545',
         cancel: false
       });
-    }
+    } */
+  error(title = '', content = '') {
+      const config = {
+          title: title,
+          icon: 'error',
+          iconColor: '#dc3545',
+          ok: 'OK',
+          okColor: '#dc3545',
+          cancel: false
+      };
+      
+      if (typeof content === 'object') {
+          // content is a configuration object
+          Object.assign(config, content);
+      } else {
+          // content is just a string
+          config.content = content;
+      }
+      
+      return this.fire(config);
+      }
+      
 
     /**
      * Show warning modal
@@ -804,7 +854,7 @@
      * @param {String} content - Modal content
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    warn(title = '', content = '') {
+    /* warn(title = '', content = '') {
       return this.fire({
         title: title,
         content: content,
@@ -814,7 +864,29 @@
         okColor: '#ffc107',
         cancel: false
       });
-    }
+    } */
+
+  warn(title = '', content = '') {
+      const config = {
+          title: title,
+          icon: 'warning',
+          iconColor: '#ffc107',
+          ok: 'OK',
+          okColor: '#ffc107',
+          cancel: false
+      };
+      
+      if (typeof content === 'object') {
+          // content is a configuration object
+          Object.assign(config, content);
+      } else {
+          // content is just a string
+          config.content = content;
+      }
+      
+      return this.fire(config);
+      }
+      
 
     /**
      * Show info modal
@@ -823,7 +895,7 @@
      * @param {String} content - Modal content
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    info(title = '', content = '') {
+    /* info(title = '', content = '') {
       return this.fire({
         title: title,
         content: content,
@@ -833,7 +905,28 @@
         okColor: '#17a2b8',
         cancel: false
       });
-    }
+    } */
+
+      info(title = '', content = '') {
+          const config = {
+            title: title,
+            icon: 'info',
+            iconColor: '#17a2b8',
+            ok: 'OK',
+            okColor: '#17a2b8',
+            cancel: false
+          };
+          
+          if (typeof content === 'object') {
+            // content is a configuration object
+            Object.assign(config, content);
+          } else {
+            // content is just a string
+            config.content = content;
+          }
+          
+          return this.fire(config);
+        }
 
     /**
      * Show question modal
@@ -842,7 +935,7 @@
      * @param {String} content - Modal content
      * @returns {Promise} - Promise that resolves when modal is closed
      */
-    ask(title = '', content = '') {
+    /* ask(title = '', content = '') {
       return this.fire({
         title: title,
         content: content,
@@ -852,7 +945,28 @@
         okColor: '#28a745',
         cancel: 'No'
       });
-    }
+    } */
+
+      ask(title = '', content = '') {
+          const config = {
+            title: title,
+            icon: 'question',
+            iconColor: '#6c757d',
+            ok: 'Yes',
+            okColor: '#28a745',
+            cancel: 'No'
+          };
+          
+          if (typeof content === 'object') {
+            // content is a configuration object
+            Object.assign(config, content);
+          } else {
+            // content is just a string
+            config.content = content;
+          }
+          
+          return this.fire(config);
+        }
 
     /**
      * Show notification
@@ -861,7 +975,7 @@
      * @param {String} content - Notification content
      * @returns {Promise} - Promise that resolves when notification is closed
      */
-    notify(title = '', content = '') {
+    /* notify(title = '', content = '') {
       return this.fire({
         title: title,
         content: content,
@@ -873,7 +987,30 @@
         timeout: 5000,
         progress: true
       });
-    }
+    } */
+
+      notify(title = '', content = '') {
+          const config = {
+            title: title,
+            icon: 'info',
+            iconColor: '#17a2b8',
+            position: 'top-right',
+            ok: false,
+            cancel: false,
+            timeout: 5000,
+            progress: true
+          };
+          
+          if (typeof content === 'object') {
+            // content is a configuration object
+            Object.assign(config, content);
+          } else {
+            // content is just a string
+            config.content = content;
+          }
+          
+          return this.fire(config);
+        }
 
     /**
      * Create a new instance with predefined options
