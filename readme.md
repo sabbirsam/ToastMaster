@@ -202,6 +202,8 @@ customToast.fire({
 
 ### Pricing Modal
 
+### Creating a Pricing Modal Configuration
+
 ```javascript
 Toast.price({
   title: '🚀 Hello its a pricing modal',
@@ -285,7 +287,7 @@ ToastMaster.tag('pro', null, {
 });
 ```
 ```javascript
-// Example: Adding a tag with custom inline styles
+// Adding a tag with custom inline styles
 ToastMaster.tag('hot', 'TRENDING', {
   selector: 'h3',
   position: 'after',
