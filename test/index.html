@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <!-- Include the ToastMaster library -->
+    <script src="../src/ToastMaster.js"></script>
+    <!-- Include the test script -->
+    <script src="./script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToastMaster.js Demo</title>
@@ -109,6 +113,8 @@
 <body>
     <div class="container">
         <h1>ToastMaster.js Demo</h1>
+        <h2>Apply formula</h2>
+        <h3 id="#trending-items">Apply formula</h3>
 
         <div class="buttons">
             <button class="success" onclick="showSuccess()">Success Modal</button>
@@ -119,13 +125,15 @@
             <button onclick="showNotification()">Notification</button>
             <button onclick="showLoading()">Show Loading</button>
             <button onclick="showCustom()">Custom Modal</button>
+            <button onclick="showPrice()">Price Modal</button>
+            <button onclick="showPrice2()">Price Modal 2</button>
         </div>
 
         <div class="result" id="result"></div>
     </div>
 
     <!-- Include the ToastMaster library -->
-    <script src="../package/dist/toastmaster.min.js"></script>
+    <script src="../src/ToastMaster.js"></script>
     <!-- Include the test script -->
     <script src="./script.js"></script>
 </body>

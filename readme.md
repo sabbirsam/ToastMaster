@@ -1,11 +1,13 @@
 # ToastMaster- by SABBIRSAM
 
-A lightweight, versatile modal and toast notification library that works seamlessly with vanilla JavaScript, React, Vue, PHP, and other frameworks.
+A lightweight, versatile modal and toast notification library that works seamlessly with vanilla JavaScript, React, Vue and other frameworks.
 
 ## Features
 
 - 🚀 Lightweight and fast
 - 🎨 Highly customizable (size, position, colors, animations)
+- 💳 Built-in pricing modal support
+- 🏷️ Tag system for badges like New, Pro, Upcoming
 - 🌗 Dark mode support
 - 🧩 Framework-agnostic (works with any JS framework)
 - 📱 Responsive design
@@ -195,6 +197,106 @@ customToast.fire({
   title: 'Custom Modal',
   content: 'This modal uses a custom configuration.'
 });
+```
+
+
+### Pricing Modal
+
+```javascript
+Toast.price({
+  title: '🚀 Hello its a pricing modal',
+  subtitle: 'Choose the plan that fits your needs',
+  toggles: {
+    options: ['Monthly', 'Yearly', 'Lifetime'],
+    active: 'Yearly',
+    savings: { 'Yearly': 'Save 20%', 'Lifetime': 'Save 80%' }
+  },
+  plans: [
+    {
+      name: 'Basic',
+      tag: Toast.tag('new'),
+      prices: {
+        'Monthly': { original: 12.99, current: 12.99, period: '/month' },
+        'Yearly': { original: 155.88, current: 129.90, period: '/year' },
+        'Lifetime': { original: 155.88, current: 30.49, period: '/lifetime' }
+      },
+      features: ['All Basic features', 'WooCommerce packages', 'Security features'],
+      button: {
+        text: 'Visit Now',
+        url: 'https://github.com/sabbirsam'
+      }
+    },
+    {
+      name: 'Pro',
+      prices: {
+        'Monthly': { original: 29.99, current: 29.99, period: '/month' },
+        'Yearly': { original: 359.88, current: 287.90, period: '/year' },
+        'Lifetime': { original: 426.75, current: 85.35, period: '/lifetime' }
+      },
+      features: ['All Basic features', 'WooCommerce packages', 'Advanced security', 'Priority support'],
+      button: {
+        text: 'Google Now',
+        url: 'https://www.google.com/'
+      },
+      tag: Toast.tag('pro')
+    },
+    {
+      name: 'Agency',
+      prices: {
+        'Monthly': { original: 49.99, current: 49.99, period: '/month' },
+        'Yearly': { original: 599.88, current: 479.90, period: '/year' },
+        'Lifetime': { original: 751.00, current: 150.20, period: '/lifetime' }
+      },
+      features: ['All Pro features', 'Unlimited sites', 'White labeling', 'Premium support'],
+      button: {
+        text: 'Upgrade Now',
+        url: '/checkout?plan=agency'
+      },
+      tag: Toast.tag('new', 'HOT DEAL', '#e74c3c')
+    }
+  ],
+  recommended: 'Pro',
+  guarantee: { 
+    days: 14, 
+    title: '14-Day Money-Back Guarantee', 
+    text: 'Try it risk-free. If you\'re not satisfied, get a full refund within 14 days.' 
+  }
+});
+```
+
+### Tags
+
+```javascript
+// Default tag
+Toast.tag('new');
+
+// Custom label
+Toast.tag('pro');
+
+// Custom label and color
+Toast.tag('new', 'HOT DEAL', '#e74c3c');
+
+```
+
+```javascript
+// Add tag next to an any element
+ToastMaster.tag('pro', null, { 
+  selector: 'h2'  
+});
+```
+```javascript
+// Example: Adding a tag with custom inline styles
+ToastMaster.tag('hot', 'TRENDING', {
+  selector: 'h3',
+  position: 'after',
+  style: {
+    backgroundImage: 'linear-gradient(to right, #ff416c, #ff4b2b)',
+    transform: 'rotate(-5deg)',
+    transformOrigin: 'center',
+    textShadow: '0 1px 1px rgba(0,0,0,0.2)'
+  }
+});
+
 ```
 
 ## Configuration Options
