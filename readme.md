@@ -200,9 +200,12 @@ customToast.fire({
 ```
 
 
-### Pricing Modal
+
+## Pricing Modal
 
 ### Creating a Pricing Modal Configuration
+
+```javascript
 
 ```javascript
 Toast.price({
@@ -266,7 +269,9 @@ Toast.price({
 });
 ```
 
-### Tags
+## Tags
+
+### Creating Tags
 
 ```javascript
 // Default tag
