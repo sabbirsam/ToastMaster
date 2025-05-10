@@ -331,6 +331,81 @@ ToastMaster.tag('hot', 'TRENDING', {
 | `animation`     | String/Boolean      | `'tilt'`           | Animation type ('tilt', 'fadeIn', 'shakeY', 'shakeX'). Set `false` to disable. |
 | `darkMode`      | Boolean             | `false`            | Enable dark mode.                                   |
 | `classes`       | Object              | `{}`               | Custom CSS classes for modal elements.              |
+| `loadingText`   | String              | `{Please wait...'}`| Text for loading modal.                             |
+| `isPricingModal`| Boolean             | `{false'}`         | Internal flag for pricing modals.                   |
+
+
+## Tag Configuration (tag() Method)
+
+### Options
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| type | String | 'custom' | Tag type (`pro`, `new`, `upcoming`, `beta`, `hot`, `sale`, `free`). |
+| text | String | type.toUpperCase() | Display text. |
+| color | String | Auto-based on type | Background color. |
+| textColor | String | '#fff' | Text color. |
+| borderRadius | String | '3px' | Border radius. |
+| padding | String | '2px 6px' | Inner spacing. |
+| fontSize | String | '12px' | Font size. |
+| fontWeight | String | 'bold' | Font weight. |
+| margin | String | '0 5px' | Outer spacing. |
+| display | String | 'inline-block' | Display style. |
+| className | String | '' | Additional CSS classes. |
+| style | Object | {} | Custom inline styles. |
+
+### Predefined Tag Types
+
+| Type | Default Color | Use Case |
+|------|--------------|----------|
+| pro | #ff6b6b | Professional plan. |
+| new | #4ecdc4 | New feature. |
+| upcoming | #a66efa | Coming soon. |
+| beta | #f39c12 | Beta release. |
+| hot | #e74c3c | Hot deal. |
+| sale | #3498db | Discounted. |
+| free | #2ecc71 | Free plan. |
+
+## Pricing Modal (price() Method)
+
+### Plan Object Options
+
+| Property | Type | Description |
+|----------|------|-------------|
+| name | String | Plan name (e.g., 'Basic'). |
+| prices | Object | Pricing for each toggle (e.g., Monthly: { current: 9.99 }). |
+| features | Array | List of features (e.g., ['24/7 Support', '10GB Storage']). |
+| button | Object | Config for the CTA button (text, url, callback). |
+| tag | String/Object | Tag (e.g., 'pro' or { type: 'custom', text: 'LIMITED' }). |
+
+### Toggle Options
+
+| Property | Type | Description |
+|----------|------|-------------|
+| options | Array | Toggle choices (e.g., ['Monthly', 'Yearly']). |
+| active | String | Default active toggle (e.g., 'Yearly'). |
+| savings | Object | Savings text (e.g., { Yearly: 'Save 20%' }). |
+
+## CSS Classes Customization
+
+| Class Name | Element Targeted |
+|------------|------------------|
+| modal | Main modal container. |
+| icon | Icon container. |
+| content | Content area. |
+| contentTitle | Title text. |
+| contentText | Content text. |
+| closeButton | Close button. |
+| buttons | Buttons container. |
+| ok | OK button. |
+| cancel | Cancel button. |
+| backdrop | Backdrop. |
+| loading | Loading container. |
+| loadingText | Loading text. |
+| loadingSpinner | Loading spinner. |
+| progress | Progress bar. |
+| arrow-icon | Pricing modal arrows. |
+| check-icon | Pricing modal checkmarks. |
 
 ## Browser Support
 

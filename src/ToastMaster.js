@@ -1417,13 +1417,18 @@
         switch(tagType) {
           case 'pro':
             color = '#ff6b6b';
-            break;
           case 'new':
             color = '#4ecdc4';
-            break;
           case 'upcoming':
             color = '#a66efa';
-            break;
+          case 'beta':
+            color = '#f39c12';
+          case 'hot':
+            color = '#e74c3c';
+          case 'sale':
+            color = '#3498db';
+          case 'free':
+            color = '#2ecc71';
           default:
             color = '#6c757d';
         }
