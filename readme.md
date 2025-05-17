@@ -24,13 +24,14 @@ A lightweight, versatile modal and toast notification library that works seamles
 2. Include it in your HTML:
 
 ```html
-<script src="path/to/toastmaster.js"></script>
+<script src="path/to/toastmaster.min.js"></script>
+<script src="../dist/toastmaster.min.js"></script>
 ```
 
 ### Option 2: CDN
 
 ```html
-<script src="https://cdn.example.com/toastmaster/1.0.0/toastmaster.min.js"></script>
+<script src="https://cdn.example.com/toastmaster/2.0.0/toastmaster.min.js"></script>
 ```
 
 ### Option 3: NPM (for usage with module bundlers)
@@ -42,7 +43,21 @@ npm install toastmaster --save
 Then import it in your JavaScript:
 
 ```javascript
-import Toast from 'toastmaster';
+import ToastMaster from '../node_modules/toastmaster';
+
+```
+
+```javascript
+const exampleinReact = () => {
+  const ToastMaster = require('toastmaster');
+
+  ToastMaster.fire({
+      title: 'Warning',
+      content: 'There are no leads to export!',
+      icon: 'warning',
+      iconColor: '#ffc107'
+    });
+
 ```
 
 ## Basic Usage
