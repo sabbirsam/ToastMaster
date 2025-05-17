@@ -31,7 +31,7 @@ A lightweight, versatile modal and toast notification library that works seamles
 ### Option 2: CDN
 
 ```html
-<script src="https://cdn.example.com/toastmaster/2.0.0/toastmaster.min.js"></script>
+<script src="https://cdn.example.com/toastmaster/2.0.1/toastmaster.min.js"></script>
 ```
 
 ### Option 3: NPM (for usage with module bundlers)
