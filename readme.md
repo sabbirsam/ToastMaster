@@ -44,6 +44,12 @@ Then import it in your JavaScript:
 
 ```javascript
 import ToastMaster from '../node_modules/toastmaster';
+ToastMaster.fire({
+      title: 'Warning',
+      content: 'There are no leads to export!',
+      icon: 'warning',
+      iconColor: '#ffc107'
+    });
 
 ```
 
