@@ -20,7 +20,7 @@ A lightweight, versatile modal and toast notification library that works seamles
 
 ### Option 1: Direct Download
 
-1. Download `toastmaster.js` from the repository
+1. Download `toastmaster.min.js` from the repository
 2. Include it in your HTML:
 
 ```html
