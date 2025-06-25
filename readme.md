@@ -221,7 +221,77 @@ customToast.fire({
 });
 ```
 
+## Usage Examples
 
+### 1. Pricing Modal with Backdrop Close
+
+You can allow users to close the pricing modal by clicking the backdrop (outside the modal) using `backdropClose: true`:
+
+```javascript
+Toast.price({
+  title: 'Pricing Modal (Backdrop Close)',
+  subtitle: 'Click outside the modal to close',
+  backdropClose: true,
+  plans: [
+    {
+      name: 'Demo',
+      prices: {
+        'Monthly': { original: 10, current: 10, period: '/month' }
+      },
+      features: ['Demo feature'],
+      button: {
+        text: 'Try',
+        url: '#'
+      }
+    }
+  ],
+  toggles: { options: ['Monthly'], active: 'Monthly' },
+  guarantee: { days: 7, title: '7-Day Guarantee', text: 'Demo only.' }
+});
+```
+
+### 2. Pricing Modal with Button Function Callback
+
+You can run any JavaScript function when a pricing modal button is pressed by using the `callback` property:
+
+```javascript
+function pricingCallbackDemo(data) {
+  alert('Callback function called!\nPlan: ' + data.plan.name + '\nToggle: ' + data.toggle);
+  // Custom logic here
+}
+
+Toast.price({
+  title: 'Pricing Modal (Function Callback)',
+  subtitle: 'Button will call a JS function',
+  plans: [
+    {
+      name: 'Callback Plan',
+      prices: {
+        'Monthly': { original: 20, current: 15, period: '/month' }
+      },
+      features: ['Callback feature'],
+      button: {
+        text: 'Call Function',
+        callback: pricingCallbackDemo
+      }
+    }
+  ],
+  toggles: { options: ['Monthly'], active: 'Monthly' },
+  guarantee: { days: 3, title: '3-Day Guarantee', text: 'Callback demo.' }
+});
+```
+
+### 3. Auto Tag Rendering via Class
+
+You can add a tag to any HTML element by simply adding a class like `toast-tag-new`, `toast-tag-pro`, or `toast-tag-upcoming`:
+
+```html
+<span class="toast-tag-new">This is a NEW tag (auto)</span>
+<span class="toast-tag-pro">This is a PRO tag (auto)</span>
+<span class="toast-tag-upcoming">This is an UPCOMING tag (auto)</span>
+```
+
+On page load, the ToastMaster library will automatically render the corresponding tag after each element with a `toast-tag-<type>` class.
 
 ## Pricing Modal
 
@@ -229,7 +299,6 @@ customToast.fire({
 
 ```javascript
 
-```javascript
 Toast.price({
   title: '🚀 Hello its a pricing modal',
   subtitle: 'Choose the plan that fits your needs',
@@ -289,6 +358,7 @@ Toast.price({
     text: 'Try it risk-free. If you\'re not satisfied, get a full refund within 14 days.' 
   }
 });
+
 ```
 
 ## Tags

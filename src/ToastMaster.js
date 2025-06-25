@@ -1005,6 +1005,36 @@
         }
       }
       
+      // Backdrop click
+      if (options.backdropClose && options.backdrop && modalElement.parentElement) {
+        modalElement.parentElement.addEventListener('click', (e) => {
+          if (e.target === modalElement.parentElement) {
+            this._close();
+            resolve({ close: true });
+          }
+        });
+      }
+
+      // Body click
+      if (options.bodyClose) {
+        modalElement.addEventListener('click', () => {
+          this._close();
+          resolve({ close: true });
+        });
+      }
+
+      // ESC key press
+      if (options.escClose) {
+        const escHandler = (e) => {
+          if (e.key === 'Escape') {
+            this._close();
+            resolve({ close: true });
+            document.removeEventListener('keydown', escHandler);
+          }
+        };
+        document.addEventListener('keydown', escHandler);
+      }
+      
       // Get the toggle buttons
       const toggleButtons = modalElement.querySelectorAll('.tm-price-modal-toggle button');
       
@@ -1844,4 +1874,22 @@
   if (typeof define === 'function' && define.amd) {
     define(function() { return ToastMaster; });
   }
+
+  // Auto-render tags for elements with class toast-tag-<type>
+  document.addEventListener('DOMContentLoaded', function() {
+    var tagClassRegex = /toast-tag-([a-zA-Z0-9_-]+)/g;
+    var all = document.querySelectorAll('[class*="toast-tag-"]');
+    all.forEach(function(el) {
+      var matches = Array.from(el.classList).map(function(cls) {
+        var m = cls.match(/^toast-tag-([a-zA-Z0-9_-]+)$/);
+        return m ? m[1] : null;
+      }).filter(Boolean);
+      matches.forEach(function(type) {
+        // Avoid duplicate tags
+        if (!el.nextSibling || !el.nextSibling.classList || !el.nextSibling.classList.contains('tm-tag')) {
+          window.Toast.tag(type, '', { target: el.parentNode, position: 'after', selector: null });
+        }
+      });
+    });
+  });
 })();

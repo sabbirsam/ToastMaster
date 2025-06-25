@@ -203,3 +203,56 @@ function logResult(result) {
       ToastMaster.notify('Welcome!', 'ToastMaster.js demo is ready.');
     }, 1000);
   });
+
+  // Demo: Pricing modal with backdropClose enabled
+  function showPriceBackdropClose() {
+    Toast.price({
+      title: 'Pricing Modal (Backdrop Close)',
+      subtitle: 'Click outside the modal to close',
+      backdropClose: true,
+      plans: [
+        {
+          name: 'Demo',
+          prices: {
+            'Monthly': { original: 10, current: 10, period: '/month' }
+          },
+          features: ['Demo feature'],
+          button: {
+            text: 'Try',
+            url: '#'
+          }
+        }
+      ],
+      toggles: { options: ['Monthly'], active: 'Monthly' },
+      guarantee: { days: 7, title: '7-Day Guarantee', text: 'Demo only.' }
+    }).then(logResult);
+  }
+
+  // Demo: Pricing modal with function callback
+  function showPriceWithCallback() {
+    Toast.price({
+      title: 'Pricing Modal (Function Callback)',
+      subtitle: 'Button will call a JS function',
+      plans: [
+        {
+          name: 'Callback Plan',
+          prices: {
+            'Monthly': { original: 20, current: 15, period: '/month' }
+          },
+          features: ['Callback feature'],
+          button: {
+            text: 'Call Function',
+            callback: pricingCallbackDemo
+          }
+        }
+      ],
+      toggles: { options: ['Monthly'], active: 'Monthly' },
+      guarantee: { days: 3, title: '3-Day Guarantee', text: 'Callback demo.' }
+    }).then(logResult);
+  }
+
+  // The callback function to be called from the pricing modal
+  function pricingCallbackDemo(data) {
+    alert('Callback function called!\nPlan: ' + data.plan.name + '\nToggle: ' + data.toggle);
+    // You can do any custom logic here
+  }
