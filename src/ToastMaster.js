@@ -1892,4 +1892,59 @@
       });
     });
   });
+
+  // --- Custom Tag Auto-render ---
+  (function() {
+    function renderCustomTags() {
+      console.log('[ToastMaster] Running renderCustomTags');
+      var all = document.querySelectorAll('[class*="toast-ctag-"]');
+      console.log('[ToastMaster] Found', all.length, 'elements with toast-ctag-');
+      all.forEach(function(el, idx) {
+        var match = Array.from(el.classList).find(function(cls) {
+          return cls.startsWith('toast-ctag-');
+        });
+        if (match) {
+          var parts = match.split('-');
+          console.log(`[ToastMaster] [${idx}] Processing class:`, match, 'parts:', parts);
+          // Format: toast-ctag-Label-bgcolor-textcolor-radius-width-height-fontsize-padding
+          if (parts.length >= 5) {
+            var label = parts[2];
+            var bgColor = parts[3];
+            var textColor = parts[4];
+            var radius = parts[5] || '12px';
+            var width = parts[6] || '';
+            var height = parts[7] || '';
+            var fontSize = parts[8] || '0.85em';
+            var padding = parts[9] ? parts[9].replace(/_/g, ' ') : '2px 8px';
+            if (/^[0-9a-fA-F]{3}$/.test(bgColor) || /^[0-9a-fA-F]{6}$/.test(bgColor)) {
+              bgColor = '#' + bgColor;
+            }
+            if (/^[0-9a-fA-F]{3}$/.test(textColor) || /^[0-9a-fA-F]{6}$/.test(textColor)) {
+              textColor = '#' + textColor;
+            }
+            console.log(`[ToastMaster] [${idx}] label:`, label, 'bgColor:', bgColor, 'textColor:', textColor, 'radius:', radius, 'width:', width, 'height:', height, 'fontSize:', fontSize, 'padding:', padding);
+            el.style.backgroundColor = bgColor;
+            el.style.color = textColor;
+            el.style.borderRadius = radius;
+            if (width) el.style.width = width;
+            if (height) el.style.height = height;
+            el.style.fontSize = fontSize;
+            el.style.padding = padding;
+            el.style.display = 'inline-block';
+            el.textContent = label;
+          } else {
+            console.warn(`[ToastMaster] [${idx}] Invalid class format for custom tag:`, match);
+          }
+        } else {
+          console.warn(`[ToastMaster] [${idx}] No matching toast-ctag- class found on element`, el);
+        }
+      });
+    }
+    // Expose as static method
+    if (typeof window !== 'undefined' && window.ToastMaster) {
+      window.ToastMaster.renderCustomTags = renderCustomTags;
+    }
+    // Auto-run on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', renderCustomTags);
+  })();
 })();

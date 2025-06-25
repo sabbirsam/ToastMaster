@@ -1,4 +1,4 @@
-# ToastMaster- by SABBIRSAM
+# ToastMaster by sabbirsam
 
 A lightweight, versatile modal and toast notification library that works seamlessly with vanilla JavaScript, React, Vue and other frameworks.
 
@@ -15,6 +15,7 @@ A lightweight, versatile modal and toast notification library that works seamles
 - ⏱️ Auto-close with progress bar
 - 🔄 Promise-based API
 - 📏 No dependencies
+
 
 ## Installation
 
@@ -397,6 +398,79 @@ ToastMaster.tag('hot', 'TRENDING', {
 });
 
 ```
+
+## Custom Tag Usage
+
+ToastMaster supports auto-rendering custom tags using a special class format. This allows you to easily create styled badges/tags in your HTML with just a class name—no JavaScript required!
+
+### Class Format
+
+```
+toast-ctag-Label-bgcolor-textcolor-radius-width-height-fontsize-padding
+```
+- **Label**: The text to display inside the tag
+- **bgcolor**: Background color (named or hex)
+- **textcolor**: Text color (named or hex)
+- **radius**: Border radius (e.g., `12px`, `50%`) *(optional, default: `12px`)*
+- **width**: Width (e.g., `60px`, `auto`) *(optional)*
+- **height**: Height (e.g., `24px`, `auto`) *(optional)*
+- **fontsize**: Font size (e.g., `1em`, `14px`) *(optional, default: `0.85em`)*
+- **padding**: Padding (e.g., `2px_8px`, `0.5em_1em`) *(optional, default: `2px 8px`)*
+  - Use underscores (`_`) instead of spaces in the class name for padding values.
+
+You can omit any trailing values to use the default for that style.
+
+### Supported Color Formats
+- **Named colors**: e.g., `red`, `green`, `orange`, `blue`
+- **Hex colors**: Use without the `#` (e.g., `ff9800`, `fff`, `2196f3`). The library will automatically prepend `#` if the value is 3 or 6 hex digits.
+
+### Examples
+
+**Basic custom tag:**
+```html
+<span class="toast-ctag-Beta-red-fff"></span>
+```
+- Label: Beta
+- Background: red
+- Text: #fff
+
+**Custom radius, width, height, font size, and padding:**
+```html
+<span class="toast-ctag-Alpha-4caf50-222-16px-80px-32px-1.2em-6px_16px"></span>
+```
+- Label: Alpha
+- Background: #4caf50
+- Text: #222
+- Border radius: 16px
+- Width: 80px
+- Height: 32px
+- Font size: 1.2em
+- Padding: 6px 16px
+
+**Hex color for both background and text:**
+```html
+<span class="toast-ctag-Hot-ff9800-fff"></span>
+```
+- Label: Hot
+- Background: #ff9800
+- Text: #fff
+
+**With only some custom styles:**
+```html
+<span class="toast-ctag-Info-2196f3-fff-8px"></span>
+```
+- Label: Info
+- Background: #2196f3
+- Text: #fff
+- Border radius: 8px
+
+### Dynamic Usage
+If you add custom tags dynamically after page load, call:
+```javascript
+ToastMaster.renderCustomTags();
+```
+This will scan the DOM and apply styles to any new custom tags.
+
 
 ## Configuration Options
 
