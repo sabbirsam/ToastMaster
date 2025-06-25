@@ -282,18 +282,6 @@ Toast.price({
 });
 ```
 
-### 3. Auto Tag Rendering via Class
-
-You can add a tag to any HTML element by simply adding a class like `toast-tag-new`, `toast-tag-pro`, or `toast-tag-upcoming`:
-
-```html
-<span class="toast-tag-new">This is a NEW tag (auto)</span>
-<span class="toast-tag-pro">This is a PRO tag (auto)</span>
-<span class="toast-tag-upcoming">This is an UPCOMING tag (auto)</span>
-```
-
-On page load, the ToastMaster library will automatically render the corresponding tag after each element with a `toast-tag-<type>` class.
-
 ## Pricing Modal
 
 ### Creating a Pricing Modal Configuration
@@ -364,6 +352,7 @@ Toast.price({
 
 ## Tags
 
+
 ### Creating Tags
 
 ```javascript
@@ -398,6 +387,20 @@ ToastMaster.tag('hot', 'TRENDING', {
 });
 
 ```
+
+
+### 3. Auto Tag Rendering via Class
+
+You can add a tag to any HTML element by simply adding a class like `toast-tag-new`, `toast-tag-pro`, or `toast-tag-upcoming`:
+
+```html
+<span class="toast-tag-new">This is a NEW tag (auto)</span>
+<span class="toast-tag-pro">This is a PRO tag (auto)</span>
+<span class="toast-tag-upcoming">This is an UPCOMING tag (auto)</span>
+```
+
+On page load, the ToastMaster library will automatically render the corresponding tag after each element with a `toast-tag-<type>` class.
+
 
 ## Custom Tag Usage
 
