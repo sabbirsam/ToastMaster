@@ -516,7 +516,24 @@ You can add your own CSS animation classes by extending the `ANIMATIONS` object 
 
 ## Event Hooks
 
-ToastMaster does not currently support `onOpen` or `onClose` callbacks directly. However, you can use the returned Promise from `fire()` and other modal methods to detect when a modal is closed or a user action is taken:
+ToastMaster supports `onOpen` and `onClose` callbacks directly in all modal types. These allow you to run custom code when a modal opens or closes.
+
+- `onOpen`: Called immediately after the modal is added to the DOM and animation starts.
+- `onClose`: Called right before the modal is removed from the DOM (after animation out, if any).
+
+**Example:**
+```javascript
+Toast.fire({
+  title: 'With Hooks',
+  content: 'Check the console for onOpen and onClose logs.',
+  onOpen: () => { console.log('Modal opened!'); },
+  onClose: () => { console.log('Modal closed!'); }
+});
+```
+
+These options work for all modal types (`fire`, `success`, `error`, `warn`, `info`, `ask`, `notify`, `price`, etc).
+
+You can also use the returned Promise to detect when a modal is closed or a user action is taken:
 
 ```javascript
 Toast.fire({
@@ -535,7 +552,7 @@ Toast.fire({
 });
 ```
 
-If you need to run code when a modal opens, you can do so immediately after calling `Toast.fire()`.
+If you need to run code when a modal opens, you can do so immediately after calling `Toast.fire()`, or use the new `onOpen` callback.
 
 ## Configuration Options
 

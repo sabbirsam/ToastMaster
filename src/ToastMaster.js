@@ -717,8 +717,7 @@
 
     /**
      * Create and show a modal- The main method for creating and showing a modal
-     * 
-     * @param {Object} options - Modal options
+     * @param {Object} options - Modal options (now supports onOpen, onClose callbacks)
      * @returns {Promise} - Promise that resolves when modal is closed
      */
     fire(options = {}) {
@@ -727,20 +726,19 @@
         if (this.currentModal) {
           this._close();
         }
-        
         // Merge options
         const modalOptions = this._mergeOptions(this.options, options);
-        
         // Create modal elements
         const modal = this._createModal(modalOptions);
         document.body.appendChild(modal.backdrop);
-        
         // Store current modal
         this.currentModal = modal;
-        
         // Apply animation
         this._applyAnimation(modal.modal, modalOptions.animation, 'in');
-        
+        // --- onOpen callback ---
+        if (typeof modalOptions.onOpen === 'function') {
+          try { modalOptions.onOpen(modal); } catch (e) { console.error('[ToastMaster] onOpen error:', e); }
+        }
         // Special handling for pricing modal
         if (modalOptions.isPricingModal) {
           this._setupPricingEvents(modal.modal, modalOptions, resolve);
@@ -748,11 +746,12 @@
           // Standard event setup for regular modals
           this._setupEvents(modal, modalOptions, resolve);
         }
-        
         // Handle auto-close timer
         if (modalOptions.timeout && typeof modalOptions.timeout === 'number') {
           this._setupTimer(modal, modalOptions.timeout, resolve);
         }
+        // Attach onClose to modal instance for use in _close
+        this._onCloseCallback = (typeof modalOptions.onClose === 'function') ? modalOptions.onClose : null;
       });
     }
 
@@ -1234,37 +1233,32 @@
 
     /**
      * Close the current modal
+     * Calls onClose callback if provided
      */
     _close() {
       if (!this.currentModal) return;
-      
       const { backdrop, modal } = this.currentModal;
-      
       // Clear timers
-      if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
-      }
-      
-      if (this.progressTimer) {
-        clearTimeout(this.progressTimer);
-        this.progressTimer = null;
-      }
-      
+      if (this.timer) { clearTimeout(this.timer); this.timer = null; }
+      if (this.progressTimer) { clearTimeout(this.progressTimer); this.progressTimer = null; }
       // Apply exit animation
       const animationName = this.options.animation;
+      const onCloseCb = this._onCloseCallback;
+      const removeModal = () => {
+        if (typeof onCloseCb === 'function') {
+          try { onCloseCb(); } catch (e) { console.error('[ToastMaster] onClose error:', e); }
+        }
+        document.body.removeChild(backdrop);
+      };
       if (animationName) {
         this._applyAnimation(modal, animationName, 'out');
-        
-        modal.addEventListener('animationend', () => {
-          document.body.removeChild(backdrop);
-        }, { once: true });
+        modal.addEventListener('animationend', removeModal, { once: true });
       } else {
-        document.body.removeChild(backdrop);
+        removeModal();
       }
-      
       this.currentModal = null;
       this.isLoading = false;
+      this._onCloseCallback = null;
     }
 
     /**

@@ -152,6 +152,22 @@
         <div class="result" id="result"></div>
     </div>
 
+    <h2>Event Hooks Demo (onOpen & onClose)</h2>
+    <div>
+        <button onclick="showEventHooksModal()">Show Modal with onOpen/onClose</button>
+        <p>Open the browser console to see the onOpen and onClose logs.</p>
+    </div>
+    <script>
+        function showEventHooksModal() {
+            Toast.fire({
+                title: 'Event Hooks',
+                content: 'Check the console for onOpen and onClose logs.',
+                onOpen: function () { console.log('[ToastMaster] Modal opened!'); },
+                onClose: function () { console.log('[ToastMaster] Modal closed!'); }
+            });
+        }
+    </script>
+
     <!-- Include the ToastMaster library -->
     <script src="../src/ToastMaster.js"></script>
     <!-- Include the test script -->
