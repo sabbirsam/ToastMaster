@@ -149,14 +149,16 @@
             <button onclick="showPriceWithCallback()">Price Modal (Function Callback)</button>
         </div>
 
+        <h2>Event Hooks Demo (onOpen & onClose)</h2>
+        <div>
+            <button onclick="showEventHooksModal()">Show Modal with onOpen/onClose</button>
+            <p>Open the browser console to see the onOpen and onClose logs.</p>
+        </div>
+
         <div class="result" id="result"></div>
     </div>
 
-    <h2>Event Hooks Demo (onOpen & onClose)</h2>
-    <div>
-        <button onclick="showEventHooksModal()">Show Modal with onOpen/onClose</button>
-        <p>Open the browser console to see the onOpen and onClose logs.</p>
-    </div>
+
     <script>
         function showEventHooksModal() {
             Toast.fire({
