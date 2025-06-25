@@ -1,6 +1,6 @@
 {
     "name": "toastmaster",
-    "version": "2.0.1",
+    "version": "2.1.0",
     "description": "A lightweight, customizable modal and toast notification library",
     "main": "dist/toastmaster.min.js",
     "module": "src/ToastMaster.js",

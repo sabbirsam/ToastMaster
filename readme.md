@@ -471,6 +471,68 @@ ToastMaster.renderCustomTags();
 ```
 This will scan the DOM and apply styles to any new custom tags.
 
+## Dark Mode & Theming
+
+ToastMaster supports dark mode out of the box. Enable it by setting `darkMode: true` in your modal or toast configuration:
+
+```javascript
+Toast.fire({
+  title: 'Dark Mode',
+  content: 'This modal uses dark mode!',
+  darkMode: true
+});
+```
+
+You can also customize the appearance of any modal or toast by overriding the default CSS classes or using the `classes` option in your configuration.
+
+## Animations
+
+ToastMaster includes several built-in animation types:
+- `'tilt'` (default)
+- `'fadeIn'`
+- `'shakeY'`
+- `'shakeX'`
+
+Set the animation type using the `animation` option:
+
+```javascript
+Toast.fire({
+  title: 'Animated Modal',
+  animation: 'fadeIn'
+});
+```
+
+**Custom Animations:**
+You can add your own CSS animation classes by extending the `ANIMATIONS` object in the source code, then use your custom key as the `animation` value.
+
+## Accessibility
+
+- Modals are keyboard accessible: use `ESC` to close, `ENTER` for OK (if enabled).
+- All buttons are focusable and usable via keyboard.
+- **Note:** ARIA attributes and focus trap are not yet implemented. For full accessibility, consider adding these features if needed.
+
+## Event Hooks
+
+ToastMaster does not currently support `onOpen` or `onClose` callbacks directly. However, you can use the returned Promise from `fire()` and other modal methods to detect when a modal is closed or a user action is taken:
+
+```javascript
+Toast.fire({
+  title: 'Confirm',
+  content: 'Are you sure?'
+}).then(result => {
+  if (result.ok) {
+    // User confirmed
+  } else if (result.cancel) {
+    // User cancelled
+  } else if (result.close) {
+    // Modal was closed
+  } else if (result.timeout) {
+    // Modal auto-closed
+  }
+});
+```
+
+If you need to run code when a modal opens, you can do so immediately after calling `Toast.fire()`.
 
 ## Configuration Options
 
